@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function instagram() {
+export default function Instagram() {
   return (
     <div>
       <div className="2xl:mx-auto 2xl:container flex justify-center items-center   md:py-12 py-9 xl:px-20 sm:px-6 px-4 ">

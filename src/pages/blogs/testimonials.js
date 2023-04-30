@@ -8,7 +8,7 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 /* Install pure-react-carousel using -> npm i pure-react-carousel */
-export default function testimonials() {
+export default function Testimonials() {
   return (
     <div>
       <div className="flex items-center justify-between h-full w-full absolute z-0">

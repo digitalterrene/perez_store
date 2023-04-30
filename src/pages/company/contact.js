@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function contact() {
+export default function Contact() {
   const [show, setShow] = useState(false);
   return (
     <div className="h-screen w-full">

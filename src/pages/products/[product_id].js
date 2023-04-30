@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsChevronRight, BsHeart, BsShare } from "react-icons/bs";
 
-export default function index({ product_data, product_id }) {
+export default function Products({ product_data, product_id }) {
   const [productUnits, setProductUnits] = useState(1);
   const [products, setProducts] = useState([]);
   const [descActive, setDescActive] = useState(true);

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function privacy_policy() {
+export default function PrivacyPolicy() {
   return (
     <div>
       <div className="flex justify-end items-center">

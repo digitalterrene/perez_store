@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function cart() {
+export default function Cart() {
   const [inputs, setInputs] = useState({});
   const [city, setCity] = useState("");
   const { user } = useAuthContext();

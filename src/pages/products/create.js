@@ -13,7 +13,7 @@ const Header = () => {
     </div>
   );
 };
-export default function create() {
+export default function Create() {
   const [inputs, setInputs] = useState({});
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);

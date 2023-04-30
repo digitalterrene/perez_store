@@ -28,7 +28,7 @@ const Header = () => {
   );
 };
 
-export default function profile() {
+export default function Profile() {
   const [inputs, setInputs] = useState({});
   const [image, setImage] = useState("");
 

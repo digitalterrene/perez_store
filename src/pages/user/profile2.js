@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function profile2() {
+export default function Profile2() {
   let form = useRef(null);
   const handleSubmit = (event) => {
     event.preventDefault();

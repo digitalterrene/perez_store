@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function youtube() {
+export default function Youtube() {
   return <div>youtube</div>;
 }

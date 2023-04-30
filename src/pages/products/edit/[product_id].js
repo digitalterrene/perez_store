@@ -13,7 +13,7 @@ const Header = () => {
     </div>
   );
 };
-export default function edit({ product_data, product_id }) {
+export default function Edit({ product_data, product_id }) {
   const [inputs, setInputs] = useState({});
   const [product, setProduct] = useState(product_data);
   const [image, setImage] = useState("");

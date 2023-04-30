@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function terms_and_conditions() {
+export default function TermsConditions() {
   return (
     <div>
       <div className="flex justify-end items-center">

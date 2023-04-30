@@ -33,7 +33,7 @@ const tabss = [
     icon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/256/external-sold-web-store-flaticons-lineal-color-flat-icons.png",
   },
 ];
-function dashboard() {
+function Dashboard() {
   const [tabs, setTabs] = useState(tabss);
   const [tab, setTab] = useState(tabs[0]);
   const [products, setProducts] = useState([]);
@@ -206,4 +206,4 @@ function dashboard() {
   );
 }
 
-export default dashboard;
+export default Dashboard;
