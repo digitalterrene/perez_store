@@ -601,19 +601,19 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { category } = params;
 
-  const response = await fetch(`http://localhost:3000/api/products/category`, {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ key_value: category, limit: 45, skip: 0 }),
-  });
-  const data = await response.json();
-  console.log(data);
+  // const response = await fetch(`http://localhost:3000/api/products/category`, {
+  //   method: "POST",
+  //   mode: "cors",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({ key_value: category, limit: 45, skip: 0 }),
+  // });
+  // const data = await response.json();
+  // console.log(data);
   return {
     props: {
-      products_data: data,
+      products_data: [],
       category,
     },
   };
