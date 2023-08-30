@@ -42,9 +42,9 @@ export default function Create() {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "dq4ceizj6");
-      fetch("https://api.cloudinary.com/v1_1/dq4ceizj6/image/upload", {
+      data.append("upload_preset", `${process.env.CLOUDINARY_APP}`);
+      data.append("cloud_name", `${process.env.CLOUDINARY_CLOUDNAME}`);
+      fetch(`${process.env.CLOUDINARY_CREDS}dfg/image/upload`, {
         method: "post",
         body: data,
       })
@@ -86,9 +86,9 @@ export default function Create() {
       if (pic.type === "image/jpeg" || pic.type === "image/png") {
         const data = new FormData();
         data.append("file", pic);
-        data.append("upload_preset", "chat-app");
-        data.append("cloud_name", "dq4ceizj6");
-        fetch("https://api.cloudinary.com/v1_1/dq4ceizj6/image/upload", {
+        data.append("upload_preset", `${process.env.CLOUDINARY_APP}`);
+        data.append("cloud_name", `${process.env.CLOUDINARY_CLOUDNAME}`);
+        fetch(`${process.env.CLOUDINARY_CREDS}/image/upload`, {
           method: "post",
           body: data,
         })
@@ -170,13 +170,12 @@ export default function Create() {
     sendRequest();
   };
 
-  const uploadImages = async () => {};
   return (
-    <div>
+    <div className=" ">
       <Header />
-      <div class="relative  flex flex-col min-w-0 break-words pb-10  items-center w-full mb-6 border-b rounded-lg ">
-        <div className="my-100  lg:flex justify-between mx-auto px-10  w-full">
-          <div className="w-1/2 mx-auto  mr-8">
+      <div class="relative   flex flex-col min-w-0 break-words pb-10  items-center w-full mb-6 border-b rounded-lg ">
+        <div className="my-100   lg:flex justify-between mx-auto px-4 lg:px-10  w-full">
+          <div className="lg:w-1/2 mx-auto w-full lg:mr-8">
             <img
               src={
                 "https://img.freepik.com/free-vector/illuminated-neon-lights-stage-realistic-vector_1441-3734.jpg?size=626&ext=jpg&uid=R86751016&ga=GA1.2.628197184.1681078697&semt=robertav1_2_sidr"
@@ -239,8 +238,8 @@ export default function Create() {
                 ))}
             </div>
           </div>
-          <div className="lg:flex w-1/2">
-            <div className="w-full mt-6 ml-10">
+          <div className="lg:flex   lg:w-1/2">
+            <div className="w-full mt-6 lg:ml-10">
               <input
                 className="border w-full p-2 mb-10"
                 placeholder={"Product title"}
@@ -275,7 +274,7 @@ export default function Create() {
                   <Option value="clothing">Clothing</Option>
                   <Option value="skincare">Skincare</Option>
                   <Option value="shoes">Shoes</Option>
-                  <Option value="nature">Nature</Option>
+                  <Option value="formal">Formal</Option>
                 </Select>
               </div>
               <input
@@ -317,7 +316,7 @@ export default function Create() {
               <div className="w-full flex flex-col items-center">
                 <button
                   onClick={handleSubmit}
-                  className="w-1/2 lg:w-full my-2 p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+                  className="w-1/2 lg:w-full my-2 p-4 font-medium  bg-banner hover:bg-black text-slate-900 hover:text-white"
                 >
                   Save
                 </button>

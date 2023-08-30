@@ -42,10 +42,14 @@ export default function Edit({ product_data, product_id }) {
     }
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
+
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "dq4ceizj6");
-      fetch("https://api.cloudinary.com/v1_1/dq4ceizj6/image/upload", {
+      data.append("upload_preset", `${process.env.NEXT_PUBLIC_CLOUDINARY_APP}`);
+      data.append(
+        "cloud_name",
+        `${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME}`
+      );
+      fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_CREDS}`, {
         method: "post",
         body: data,
       })
@@ -87,9 +91,15 @@ export default function Edit({ product_data, product_id }) {
       if (pic.type === "image/jpeg" || pic.type === "image/png") {
         const data = new FormData();
         data.append("file", pic);
-        data.append("upload_preset", "chat-app");
-        data.append("cloud_name", "dq4ceizj6");
-        fetch("https://api.cloudinary.com/v1_1/dq4ceizj6/image/upload", {
+        data.append(
+          "upload_preset",
+          `${process.env.NEXT_PUBLIC_CLOUDINARY_APP}`
+        );
+        data.append(
+          "cloud_name",
+          `${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME}`
+        );
+        fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_CREDS}`, {
           method: "post",
           body: data,
         })
@@ -336,7 +346,7 @@ export default function Edit({ product_data, product_id }) {
               <div className="w-full flex flex-col items-center">
                 <button
                   onClick={handleSubmit}
-                  className="w-1/2 lg:w-full my-2 p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+                  className="w-1/2 lg:w-full my-2 p-4 font-medium  bg-banner hover:bg-black text-slate-900 hover:text-white"
                 >
                   Save
                 </button>
@@ -354,7 +364,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { product_id } = params;
   const response = await fetch(
-    `http:localhost:3000/api/products/${product_id}`,
+    `${process.env.BASE_URL}/api/products/${product_id}`,
     {
       method: "GET",
       mode: "cors",

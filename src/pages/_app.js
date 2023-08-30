@@ -9,9 +9,11 @@ export default function App({ Component, pageProps }) {
     <div>
       <AuthContextProvider>
         <CartProvider>
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
+          <div className="  w-full ">
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+          </div>
         </CartProvider>
       </AuthContextProvider>
     </div>

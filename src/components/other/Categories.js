@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Categories() {
@@ -8,7 +9,7 @@ export default function Categories() {
           <div className="flex flex-col jusitfy-center items-center space-y-10">
             <div className="flex flex-col justify-center items-center space-y-2">
               <p className="text-xl leading-5 text-gray-600">
-                2021 Trendsetters
+                Clothing Accessories
               </p>
               <h1 className="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800">
                 Shop By Category
@@ -21,9 +22,12 @@ export default function Categories() {
                   src="https://i.ibb.co/ThPFmzv/omid-armin-m-VSb6-PFk-VXw-unsplash-1-1.png"
                   alt="girl-image"
                 />
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                  Women
-                </button>
+                <Link
+                  className="focus:outline-none text-center focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
+                  href={"/categories/clothing"}
+                >
+                  Clothing
+                </Link>
                 <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
               </div>
               <div className="flex flex-col space-y-4 md:space-y-8 mt-4 md:mt-0">
@@ -33,9 +37,13 @@ export default function Categories() {
                     src="https://i.ibb.co/SXZvYHs/irene-kredenets-DDqx-X0-7v-KE-unsplash-1.png"
                     alt="shoe-image"
                   />
-                  <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <Link
+                    className="focus:outline-none text-center focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
+                    href={"/categories/shoes"}
+                  >
                     Shoes
-                  </button>
+                  </Link>
+
                   <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
                 </div>
                 <div className="relative group flex justify-center items-center h-full w-full">
@@ -44,9 +52,13 @@ export default function Categories() {
                     src="https://i.ibb.co/Hd1pVxW/louis-mornaud-Ju-6-TPKXd-Bs-unsplash-1-2.png"
                     alt="watch-image"
                   />
-                  <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                    Watches
-                  </button>
+                  <Link
+                    className="focus:outline-none text-center focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
+                    href={"/categories/skincare"}
+                  >
+                    Skincare
+                  </Link>
+
                   <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
                 </div>
               </div>
@@ -56,43 +68,15 @@ export default function Categories() {
                   src="https://i.ibb.co/PTtRBLL/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
                   alt="girl-image"
                 />
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                  Women
-                </button>
+                <Link
+                  className="focus:outline-none text-center focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white"
+                  href={"/categories/formal"}
+                >
+                  Formal
+                </Link>
+
                 <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
               </div>
-              <div className="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
-                <img
-                  className="object-center object-cover h-full w-full hidden md:block"
-                  src="https://i.ibb.co/6FjW19n/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2.png"
-                  alt="girl-image"
-                />
-                <img
-                  className="object-center object-cover h-full w-full md:hidden"
-                  src="https://i.ibb.co/sQgHwHn/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
-                  alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
-                />
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                  Women
-                </button>
-                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
-              </div>
-            </div>
-            <div className="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
-              <img
-                className="object-center object-cover h-full w-full hidden md:block"
-                src="https://i.ibb.co/6FjW19n/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2.png"
-                alt="girl-image"
-              />
-              <img
-                className="object-center object-cover h-full w-full sm:hidden"
-                src="https://i.ibb.co/sQgHwHn/olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-1.png"
-                alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
-              />
-              <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                Women
-              </button>
-              <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
             </div>
           </div>
         </div>

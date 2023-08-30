@@ -1,44 +1,47 @@
+import { useAuthContext } from "@/hooks/useAuthContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-const tabss = [
-  {
-    title: "balance",
-    amount: 100,
-    flac: 20,
-    id: 1,
-    icon: "https://img.icons8.com/3d-fluency/256/credit-card-front.png",
-  },
-  {
-    title: "products",
-    amount: 100,
-    count: 20,
-    id: 2,
-    icon: "https://img.icons8.com/color/256/package.png",
-  },
-  {
-    title: "orders",
-    amount: 100,
-    count: 20,
-    id: 2,
-    icon: "https://img.icons8.com/color/256/package.png",
-  },
-  {
-    title: "sales",
-    amount: 23100,
-    count: 20,
-    id: 3,
-    icon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/256/external-sold-web-store-flaticons-lineal-color-flat-icons.png",
-  },
-];
 function Dashboard() {
-  const [tabs, setTabs] = useState(tabss);
-  const [tab, setTab] = useState(tabs[0]);
   const [products, setProducts] = useState([]);
   const [skip, setSkip] = useState(0);
+  const { dispatch, user } = useAuthContext();
+  const router = useRouter();
+  const deleteProduct = async (id) => {
+    if (user && user.email != "admin@gmail.com") {
+      const toastId = toast.loading("Deleting product..");
+      const response = await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        toast.error(`${json.error}`, {
+          id: toastId,
+        });
+      }
+      if (response.ok) {
+        toast.success(`${json.message}`, {
+          id: toastId,
+        });
 
+        setTimeout(() => {
+          router.reload();
+        }, 3000);
+      }
+    } else {
+      const toastId = toast.loading("Failied to delete..");
+      toast.error("You are not the admin. Request rejected", {
+        id: toastId,
+      });
+    }
+  };
   const fetchProducts = async () => {
     const response = await fetch(`/api/products/all_fields`, {
       method: "POST",
@@ -50,7 +53,7 @@ function Dashboard() {
     });
 
     const json = await response.json();
-    console.log(json);
+    //console.log(json);
     if (response.ok && json.length > 0) {
       setProducts(json);
     }
@@ -61,42 +64,16 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="">
+    <div className="w-full  ">
       {" "}
-      <div className="flex w-full px-16 justify-between">
+      <div className="flex w-full   justify-between">
         <Tabs className={" w-full "}>
-          <TabList className={"flex justify-evenly mb-2 pb-2"}>
-            {tabs.map((t, i) => (
-              <Tab frameBorder={90} key={i}>
-                {" "}
-                <div className={`flex  ${t.id === i ? "" : ""}`}>
-                  <img
-                    src={t && t.icon && `${t.icon}`}
-                    alt="products"
-                    className="w-10 h-10"
-                  />
-                  <div className="flex text-sm">
-                    <div className="mr-4">
-                      <small className="font-medium capitalize text-slate-600">
-                        {t.title}
-                      </small>
-                      <h4 className="mb-0 text-green-600 font-semibold">
-                        R {t && t.amount && `${t.amount}`}
-                      </h4>
-                    </div>
-                    <div className="text-xs mt-1 font-semibold">
-                      {t && t.count ? `${t.count}` : `+${t.flac}`}
-                    </div>
-                  </div>
-                </div>
-              </Tab>
-            ))}
-          </TabList>
-          <div className="flex justify-end my-6 px-16 font-semibold text-slate-600 ">
+          <div className="flex justify-center text-sm bg-[#EEEEEE] gap-20 p-6 text-black  px-16 font-semibold   ">
+            <p> My Dashboard</p>
             <Link href={"/products/create"}>Add product</Link>
           </div>
           <TabPanel>
-            <div className="flex flex-col  w-4/6 mx-auto m-6 px-10">
+            <div className="flex flex-col  lg:w-4/6 mx-auto m-6 lg:uytfr5px-10">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                   <div className="overflow-hidden border-b border-gray-200  shadow-md">
@@ -169,13 +146,14 @@ function Dashboard() {
                               <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                 <Link
                                   href={`/products/${p._id}`}
-                                  className="text-indigo-600 mr-10 hover:text-indigo-900"
+                                  className="text-black hover:bg-black p-4 py-2 hover:text-white mr-10  "
                                 >
                                   View
                                 </Link>
                                 <a
                                   href="#"
-                                  className="text-indigo-600 hover:text-indigo-900"
+                                  onClick={() => deleteProduct(p._id)}
+                                  className="text-black p-4 py-2 hover:bg-black hover:text-white"
                                 >
                                   Delete
                                 </a>
@@ -189,19 +167,9 @@ function Dashboard() {
               </div>
             </div>
           </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
         </Tabs>
-        ;
       </div>
-      ;
+      <Toaster />
     </div>
   );
 }

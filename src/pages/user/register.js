@@ -54,7 +54,7 @@ export default function Register() {
   const Header = () => {
     return (
       <div className="w-full bg-[#EEEEEE] items-center py-3 justify-center flex text-lg text-slate-600 font-medium">
-        <p className="my-auto mr-2">Register</p>
+        <p className="my-auto  text-2xl font-bold mr-2">Register</p>
       </div>
     );
   };
@@ -84,7 +84,7 @@ export default function Register() {
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="w-1/2 lg:w-full p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+              className="w-1/2 lg:w-full p-3 font-medium  bg-banner hover:bg-black text-slate-900 hover:text-white"
             >
               Register
             </button>

@@ -5,8 +5,6 @@ import { AiFillEye, AiTwotoneEye } from "react-icons/ai";
 import { useCart } from "react-use-cart";
 
 const ProductCard = ({ data }) => {
-  const PATH2 = "https://vstore-server.vercel.app/products";
-
   const { addItem } = useCart();
 
   const deleteProduct = async () => {
@@ -22,12 +20,12 @@ const ProductCard = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="w-5/6  h-96 mx-auto">
       {data && (
-        <div className="h-full  w-auto  mx-2 lg:mx-8  border">
+        <div className="h-full w-full lg:w-auto     border">
           <div
             style={{ backgroundImage: `url(${data.image})` }}
-            className="group flex flex-col justify-between relative w-[200px] lg:w-[260px] h-[200px] lg:h-[260px] bg-center bg-cover"
+            className="group flex flex-col justify-between relative w-full   h-[200px] lg:h-[260px] bg-center bg-cover"
           >
             <div className="p-3 flex justify-between">
               <div>

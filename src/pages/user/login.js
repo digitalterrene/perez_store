@@ -12,7 +12,7 @@ export default function Login() {
   const Header = () => {
     return (
       <div className="w-full bg-[#EEEEEE] items-center py-3 justify-center flex text-lg text-slate-600 font-medium">
-        <p className="my-auto mr-2">Login</p>
+        <p className="my-auto mr-2 text-2xl font-bold">Login</p>
       </div>
     );
   };
@@ -70,7 +70,7 @@ export default function Login() {
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="w-1/2 lg:w-full p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+              className="w-1/2 lg:w-full p-3 font-medium bg-banner hover:bg-black text-slate-900 hover:text-white"
             >
               Login
             </button>

@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     try {
       if (password) {
         const salt = await genSalt(10);
-        req.body.password = await hash(password, salt);
+        req.body.password = await hashSync(password, salt);
       }
       const user = await User.findByIdAndUpdate(user_id, req.body, {
         new: true,

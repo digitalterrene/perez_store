@@ -1,4 +1,5 @@
 import { useAuthContext } from "@/hooks/useAuthContext";
+import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -15,13 +16,7 @@ const Header = () => {
           href={"/user/dashboard"}
           className="capitalize text-sm -mb-1 font-normal ml-auto "
         >
-          dashboard
-        </Link>
-        <Link
-          href={"/user/dashboard"}
-          className="capitalize text-sm -mb-1 font-normal ml-8 "
-        >
-          edit
+          Dashboard
         </Link>
       </div>
     </div>
@@ -40,6 +35,41 @@ export default function Profile() {
     dispatch({ type: "LOGOUT" });
   };
 
+  const deleteAccount = async () => {
+    if (user) {
+      const toastId = toast.loading("Deleting account..");
+      const response = await fetch(`/api/users/${user.user._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        toast.error(`${json.error}`, {
+          id: toastId,
+        });
+      }
+      if (response.ok) {
+        toast.success("User deleted successfully", {
+          id: toastId,
+        });
+        //remove the user from local storage
+        localStorage.removeItem("perez_shop_user", JSON.stringify(json));
+
+        dispatch({ type: "LOGOUT" });
+        setTimeout(() => {
+          router.push("/");
+        }, 3000);
+      }
+    } else {
+      const toastId = toast.loading("Failied to delete..");
+      toast.error("No account to delete. Login first", {
+        id: toastId,
+      });
+    }
+  };
+
   const postImage = (pics) => {
     const toastId = toast.loading("Loading..");
     if (pics === undefined) {
@@ -52,9 +82,12 @@ export default function Profile() {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "dq4ceizj6");
-      fetch("https://api.cloudinary.com/v1_1/dq4ceizj6/image/upload", {
+      data.append("upload_preset", `${process.env.NEXT_PUBLIC_CLOUDINARY_APP}`);
+      data.append(
+        "cloud_name",
+        `${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME}`
+      );
+      fetch(`${process.env.NEXT_PUBLIC_CLOUDINARY_CREDS}`, {
         method: "post",
         body: data,
       })
@@ -145,8 +178,9 @@ export default function Profile() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    sendRequest();
+    if (user) {
+      sendRequest();
+    }
   };
 
   return (
@@ -158,7 +192,7 @@ export default function Profile() {
             src={
               user && user.user.image
                 ? user.user.image
-                : "https://assets-global.website-files.com/616e938268c8f02f94b2b53c/62c59691520851160dae5dc0_Mask%20group-p-800.png"
+                : "https://img.freepik.com/free-vector/hand-drawn-flat-design-overwhelmed-people-illustration_23-2149319822.jpg?size=626&ext=jpg&uid=R86751016&ga=GA1.2.472706870.1686005450&semt=ais"
             }
             alt="user image"
             className="lg:w-1/3 mt-6 w-full items-center mx-auto  flex flex-col bg-contain bg-center justify-end h-[300px] lg:h-[400px] lg:mx-8 border"
@@ -184,7 +218,9 @@ export default function Profile() {
               <input
                 className="border w-full p-2 mb-10"
                 placeholder={
-                  user && user.user.username ? `${user.user.username}` : "Name"
+                  user && user.user.username
+                    ? `${user.user.username}`
+                    : "Username"
                 }
                 value={inputs.username}
                 name="username"
@@ -198,7 +234,7 @@ export default function Profile() {
               <div className="w-full flex flex-col items-center">
                 <button
                   onClick={handleSubmit}
-                  className="w-1/2 lg:w-full my-2 p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+                  className="w-1/2 lg:w-full my-2 p-3 font-medium   bg-banner hover:bg-black text-slate-900 hover:text-white"
                 >
                   Save
                 </button>
@@ -207,19 +243,19 @@ export default function Profile() {
 
                 <button
                   onClick={() => logout()}
-                  className="w-1/2 lg:w-full my-2 p-2 font-medium rounded-3xl bg-banner hover:bg-black text-slate-900 hover:text-white"
+                  className="w-1/2 lg:w-full my-2 p-3 font-medium  bg-banner hover:bg-black text-slate-900 hover:text-white"
                 >
                   Logout
                 </button>
               </div>
 
               <div className="my-6 flex">
-                <Link
-                  href={"/auth/login"}
-                  className="underline hover:text-cyan-400 text-slate-500"
+                <Button
+                  onClick={() => deleteAccount()}
+                  className=" bg-white capitalize hover: text-black hover:bg-black hover:text-white rounded-none"
                 >
                   Call it Quits? Delete Account
-                </Link>
+                </Button>
               </div>
             </div>
           </div>

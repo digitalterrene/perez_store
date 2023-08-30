@@ -58,13 +58,6 @@ export default function Products({ product_data, product_id }) {
         <div className="flex my-0 items-center ">
           <Link
             style={{ textDecoration: "none" }}
-            href={`/${product_data.category}/product_data/${product_data._id}`}
-            className="my-0 ml-6 text-black cursor-pointer p-1 px-3 hover:text-cyan-400"
-          >
-            Visit Store
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
             href={`/products/edit/${product_data._id}`}
             className="my-0 ml-6 text-black cursor-pointer p-1 px-3 hover:text-cyan-400"
           >
@@ -108,30 +101,6 @@ export default function Products({ product_data, product_id }) {
           )}
         </div>
       </div>
-      <div className="w-full bg-white">
-        <div className="flex justify-center my-40">
-          <div className="items-center flex justify-center flex-col mx-4 text-black">
-            <p className="text-2xl font-medium">You may also like</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap -mt-20 justify-center">
-          {products.map((d, i) => (
-            <ProductCard data={d} key={i} />
-          ))}
-        </div>
-        <div className="flex my-16 justify-center">
-          <button
-            onClick={showMoreBestSeller}
-            className=" relative inline-flex items-center  hover:border-collapse justify-start overflow-hidden transition-all rounded-3xl  group/btn"
-          >
-            {/* purple box */}
-            <span className="w-0 h-full  rounded-3xl bg-cyan-400 absolute top-0 left-0 ease-out duration-500 transition-all group-hover/btn:w-full -z-1  py-2 "></span>
-            <span className="w-full  px-4 group-hover/btn:border-cyan-400 border-2 border-black text-slate-900 group-hover/btn:text-white delay-400   transition-colors rounded-3xl duration-300 ease-in-out z-50 py-2 ">
-              Load more
-            </span>
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
@@ -140,14 +109,14 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { product_id } = params;
   const response = await fetch(
-    `http:localhost:3000/api/products/${product_id}`,
+    `${process.env.BASE_URL}/api/products/${product_id}`,
     {
       method: "GET",
       mode: "cors",
     }
   );
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return {
     props: {
       product_data: data,

@@ -53,13 +53,13 @@ export default function Cart() {
     }
   };
   return (
-    <div className="bg-gray-100">
-      <div className="container border-none flex mx-auto mt-10">
+    <div className="bg-gray-200">
+      <div className="container w-full  border-none lg:flex lg:mx-auto pt-10">
         <div className=" my-10 w-full pb-4 ">
-          <div className="w-3/4 bg-white px-10 py-10">
+          <div className="lg:w-3/4 bg-white px-10 py-10">
             <div className="flex justify-between border-b pb-8">
               <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-              <h2 className="font-semibold text-2xl">3 Items</h2>
+              <h2 className="font-semibold text-2xl">{totalItems} Items</h2>
             </div>
             <div className="flex mt-10 mb-5">
               <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
@@ -157,9 +157,9 @@ export default function Cart() {
               Shipping Details
             </p>
           </div>
-          <div className="mt-8 w-3/4 flex flex-wrap justify-between  items-start ">
+          <div className="mt-8 lg:w-3/4 p-4 lg:p-0 gap-2  flex flex-wrap justify-between  items-start ">
             <input
-              className="px-2 w-64  focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 "
+              className="px-2 lg:w-64 w-full focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 "
               type="text"
               name="firstname"
               value={inputs.firstname}
@@ -167,7 +167,7 @@ export default function Cart() {
               placeholder="First Name"
             />
             <input
-              className="px-2  focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 w-3/6"
+              className="px-2 w-full  focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 lg:w-3/6"
               type="text"
               name="lastname"
               value={inputs.lastname}
@@ -175,7 +175,7 @@ export default function Cart() {
               placeholder="Last Name"
             />
             <textarea
-              className="px-2 w-3/6 mr-3 my-6 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 ]"
+              className="px-2 w-full lg:w-3/6 lg:mr-3 lg:my-6 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 ]"
               type="text"
               name="address"
               value={inputs.address}
@@ -183,14 +183,14 @@ export default function Cart() {
               placeholder="Address"
             />
             <textarea
-              className="px-2  w-80 my-6 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 ]"
+              className="px-2  w-full lg:w-80 lg:my-6 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-3 ]"
               type="text"
               name="address_2"
               value={inputs.address_2}
               onChange={handleChange}
               placeholder="Address (line 02)"
             />
-            <div className=" w-1/2">
+            <div className=" w-full lg:w-1/2">
               <select
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -234,7 +234,7 @@ export default function Cart() {
               </select>
             </div>
             <input
-              className="focus:outline-none w-72 focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4   "
+              className="focus:outline-none w-full lg:w-72 focus:ring-2 focus:ring-gray-500 px-2 border-b border-gray-200 leading-4 text-base placeholder-gray-600 py-4   "
               type="text"
               name="phone_number"
               value={inputs.phone_number}
@@ -244,7 +244,7 @@ export default function Cart() {
           </div>
         </div>
 
-        <div id="summary" className="w-1/4 px-8 py-10">
+        <div id="summary" className="w-full lg:w-1/4 px-8 py-10">
           <h1 className="font-semibold text-2xl border-b pb-8">
             Order Summary
           </h1>
@@ -253,14 +253,14 @@ export default function Cart() {
               <p className="text-gray-500 my-0 mr-3">Items </p>
               {totalItems}
             </span>
-            <span className="font-semibold text-sm">$ {cartTotal}</span>
+            <span className="font-semibold text-sm">ZAR {cartTotal}</span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
               Shipping
             </label>
             <select className="block p-2 text-gray-600 w-full text-sm">
-              <option>Standard shipping - $10.00</option>
+              <option>Standard shipping - R500.00</option>
             </select>
           </div>
           <div className="py-10">
@@ -283,11 +283,11 @@ export default function Cart() {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>$ {cartTotal}</span>
+              <span>ZAR {cartTotal}</span>
             </div>
             <button
               onClick={() => handleSubmit()}
-              className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              className="bg-white border border-black text-black font-semibold hover:bg-black py-3 text-sm hover:text-white uppercase w-full"
             >
               Checkout
             </button>

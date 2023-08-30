@@ -55,28 +55,6 @@ const filters = [
       { value: "10 000 +", label: "10 000", checked: false },
     ],
   },
-  {
-    id: "participants",
-    name: "Participants",
-    options: [
-      { value: "10 -", label: "10", checked: false },
-      { value: "50 +", label: "50", checked: false },
-      { value: "100 +", label: "100", checked: true },
-      { value: "1000 +", label: "1000", checked: false },
-      { value: "10 000 +", label: "10 000", checked: false },
-    ],
-  },
-  {
-    id: "participations",
-    name: "Participations",
-    options: [
-      { value: "10 -", label: "10", checked: false },
-      { value: "50 +", label: "50", checked: false },
-      { value: "100 +", label: "100", checked: true },
-      { value: "1000 +", label: "1000", checked: false },
-      { value: "10 000 +", label: "10 000", checked: false },
-    ],
-  },
 ];
 
 function classNames(...classes) {
@@ -112,9 +90,6 @@ export default function EntityProfileView({ products_data, category }) {
   const [products, setProducts] = useState(products_data);
   const [loading, setLoading] = useState(false);
   const [toggleGrids, setToggleGrids] = useState(true);
-
-  const bg =
-    "https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?size=626&ext=jpg&uid=R86751016&ga=GA1.2.628197184.1681078697&semt=ais";
 
   let slides = [];
 
@@ -208,7 +183,7 @@ export default function EntityProfileView({ products_data, category }) {
       setCurrentIndex(slideIndex);
     };
     return (
-      <div className="group border h-[780px] z-60 w-full m-auto relative">
+      <div className="group border bg-red-900 h-[780px] z-60 w-full m-auto relative">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].src})` }}
           className="w-full h-full bg-center duration-500 bg-cover"
@@ -350,8 +325,8 @@ export default function EntityProfileView({ products_data, category }) {
             </Dialog>
           </Transition.Root>
 
-          <div className="mx-auto w-full px-12 ">
-            <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="mx-auto w-full lg:px-12 px-4 ">
+            <div className="lg:flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
               <h1 className="text-4xl capitalize font-bold tracking-tight text-gray-900">
                 {category}
               </h1>
@@ -546,19 +521,19 @@ export default function EntityProfileView({ products_data, category }) {
                               <CardSkeleton key={i} />
                             ))
                           ) : (
-                            <div className="flex flex-wrap gap-y-16">
+                            <div className="grid lg:grid-cols-4  w-full gap-8">
                               {products &&
                                 products.map((data, i) => (
                                   <ProductCard key={i} data={data} />
                                 ))}
-                              <div className="flex mb-16  w-full mx-auto mt-24 justify-center">
+                              <div className="flex mb-16  w-full   mt-24 justify-center">
                                 <button
                                   onClick={loadMore}
-                                  className=" relative inline-flex items-center  hover:border-collapse justify-start overflow-hidden transition-all rounded-3xl  group/btn"
+                                  className=" relative inline-flex items-center  hover:border-collapse justify-start overflow-hidden transition-all    group/btn"
                                 >
                                   {/* purple box */}
-                                  <span className="w-0 h-full  rounded-3xl bg-cyan-400 absolute top-0 left-0 ease-out duration-500 transition-all group-hover/btn:w-full -z-1  py-2 "></span>
-                                  <span className="w-full  px-4 group-hover/btn:border-cyan-400 border-2 border-black text-slate-900 group-hover/btn:text-white delay-400   transition-colors rounded-3xl duration-300 ease-in-out z-50 py-2 ">
+                                  <span className="w-0 h-full   bg-[#080402] absolute top-0 left-0 ease-out duration-500 transition-all group-hover/btn:w-full -z-1  py-2 "></span>
+                                  <span className="w-full  p-8 group-hover/btn:border-[#0000] border-2 border-black text-slate-900 group-hover/btn:text-white delay-400   transition-colors  duration-300 ease-in-out z-50 py-2 ">
                                     Load more
                                   </span>
                                 </button>
@@ -574,16 +549,16 @@ export default function EntityProfileView({ products_data, category }) {
             ) : (
               <>
                 {loading ? (
-                  <p>iluyrheilu</p>
+                  <p>Loading</p>
                 ) : (
                   <>
                     <ProductCard products={products} />
                     <Button
                       onClick={loadMore}
                       variant="text"
-                      className="flex my-8 items-center gap-2"
+                      className="flex my-8 bitems-center gap-2"
                     >
-                      Load More{" "}
+                      Load Morezx{" "}
                       <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
                     </Button>
                   </>
@@ -601,19 +576,22 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { category } = params;
 
-  // const response = await fetch(`http://localhost:3000/api/products/category`, {
-  //   method: "POST",
-  //   mode: "cors",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({ key_value: category, limit: 45, skip: 0 }),
-  // });
-  // const data = await response.json();
-  // console.log(data);
+  const response = await fetch(
+    `${process.env.BASE_URL}/api/products/category`,
+    {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ key_value: category, limit: 45, skip: 0 }),
+    }
+  );
+  const data = await response.json();
+  console.log(data);
   return {
     props: {
-      products_data: [],
+      products_data: data,
       category,
     },
   };

@@ -77,11 +77,7 @@ const Footer = () => {
           <h2 className="text-base font-semibold leading-4 text-gray-800">
             Company
           </h2>
-          <Link href={"/blogs"}>
-            <p className="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 cursor-pointer">
-              Blog
-            </p>
-          </Link>
+
           <Link href={"/company/contact"}>
             <p className="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 cursor-pointer">
               Contact us
@@ -97,17 +93,8 @@ const Footer = () => {
           <h2 className="text-base font-semibold leading-4 text-gray-800">
             Support
           </h2>
-          <Link href={"/legal/legal_policy"}>
-            <p className="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 cursor-pointer">
-              Legal policy
-            </p>
-          </Link>
-          <Link href={"/legal/privacy_policy"}>
-            <p className="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 cursor-pointer">
-              Privacy policy
-            </p>
-          </Link>
-          <Link href={"/legal/terms_and_conditions"}>
+
+          <Link href={"/legal/terms-and-conditions"}>
             <p className="hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 cursor-pointer">
               Terms of service
             </p>

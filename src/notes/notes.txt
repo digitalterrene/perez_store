@@ -1,0 +1,3 @@
+=>The following routes/pages are usning the localhost base url
+    change them on deploment
+    => /pages/products/[product_id]
